@@ -18,7 +18,7 @@ const Sidebar = () => {
     ]
 
     return (
-        <aside className='w-80 bg-dark-700 h-screen'>
+        <aside className='w-1/4 max-w-xs bg-dark-700 min-h-screen'>
             <section className='flex justify-center items-center py-10 px-6 gap-8'>
                 <MdMenu size={ICON_SIZE} />
                 <h1 className='font-normal text-2xl text-white'>Knuckles Vision</h1>
