@@ -5,4 +5,5 @@ export type Props = {
     icon?: IconBaseProps;
     text: string;
     isSelected?: boolean;
+    textIsVisible?: boolean;
 }

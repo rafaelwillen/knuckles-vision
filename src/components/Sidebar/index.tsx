@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdMenu, MdOutlineHome, MdPersonOutline, MdFavoriteBorder, MdOutlineFolder, MdOutlineAdd } from 'react-icons/md';
 import MenuButton from '../Button/MenuButton';
 
 const Sidebar = () => {
     const ICON_SIZE = 30;
-
+    const [isSidebarVisible, setSidebarVisible] = useState(true);
 
     const fakeGroups = [
         "Group 1",
@@ -18,18 +18,18 @@ const Sidebar = () => {
     ]
 
     return (
-        <aside className='w-1/4 max-w-xs bg-dark-700 min-h-screen'>
+        <aside className={`w-1/4 max-w-xs bg-dark-700 min-h-screen ${!isSidebarVisible && "w-[80px]"}`}>
             <section className='flex justify-center items-center py-10 px-6 gap-8'>
-                <MdMenu size={ICON_SIZE} />
-                <h1 className='font-normal text-2xl text-white'>Knuckles Vision</h1>
+                <MdMenu size={ICON_SIZE} onClick={() => setSidebarVisible(!isSidebarVisible)} />
+                {isSidebarVisible && <h1 className='font-normal text-2xl text-white'>Knuckles Vision</h1>}
             </section>
             <section className='flex flex-col gap-4'>
-                <MenuButton isSelected icon={<MdOutlineHome size={ICON_SIZE} />} text="Início" />
-                <MenuButton icon={<MdPersonOutline size={ICON_SIZE} />} text="Minha Conta" />
-                <MenuButton icon={<MdFavoriteBorder size={ICON_SIZE} />} text="Favoritos" />
-                <MenuButton icon={<MdOutlineFolder size={ICON_SIZE} />} text="Meu Conteúdo" />
+                <MenuButton isSelected icon={<MdOutlineHome size={ICON_SIZE} />} text="Início" textIsVisible={isSidebarVisible} />
+                <MenuButton icon={<MdPersonOutline size={ICON_SIZE} />} text="Minha Conta" textIsVisible={isSidebarVisible} />
+                <MenuButton icon={<MdFavoriteBorder size={ICON_SIZE} />} text="Favoritos" textIsVisible={isSidebarVisible} />
+                <MenuButton icon={<MdOutlineFolder size={ICON_SIZE} />} text="Meu Conteúdo" textIsVisible={isSidebarVisible} />
             </section>
-            <section className='flex flex-col border-t-2 border-t-grey-700 py-7 px-6 gap-9'>
+            {isSidebarVisible && <section className='flex flex-col border-t-2 border-t-grey-700 py-7 px-6 gap-9'>
                 <div className='flex items-center'>
                     <span className='flex-1 text-xl'>Meus Grupos</span>
                     <MdOutlineAdd className='cursor-pointer' size={ICON_SIZE} />
@@ -39,7 +39,7 @@ const Sidebar = () => {
                         {group}
                     </span>)}
                 </div>
-            </section>
+            </section>}
         </aside>
     )
 }
