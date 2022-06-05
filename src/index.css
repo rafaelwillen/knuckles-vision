@@ -5,6 +5,7 @@
 
 body {
   font-family: 'Montserrat', 'ui-sans-serif', 'system-ui';
+  overflow: hidden;
   color: #fff;
 }
 
