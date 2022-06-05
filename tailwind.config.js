@@ -17,9 +17,9 @@ module.exports = {
           500: "#939393",
           400: "#b3b3b3",
           300: "#d9d9d9",
-        }
+        },
+        "primary": "#d90000"
       },
-      primary: "#d90000"
     }
   },
   variants: {

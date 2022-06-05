@@ -18,7 +18,9 @@ const Sidebar = () => {
     ]
 
     return (
-        <aside className={`w-1/4 max-w-xs bg-dark-700 min-h-screen ${!isSidebarVisible && "w-[80px]"}`}>
+        <aside className={`w-1/4 max-w-xs min-h-screen
+        ${!isSidebarVisible && "w-[80px]"}`}
+            style={{ background: "linear-gradient(0deg, #242424 88%, rgba(218, 0, 0, 0.77) 110%)" }}>
             <section className='flex justify-center items-center py-10 px-6 gap-8'>
                 <MdMenu size={ICON_SIZE} onClick={() => setSidebarVisible(!isSidebarVisible)} />
                 {isSidebarVisible && <h1 className='font-normal text-2xl text-white'>Knuckles Vision</h1>}
