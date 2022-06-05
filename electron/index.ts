@@ -13,6 +13,7 @@ function createWindow() {
     height: windowHeight,
     frame: true,
     show: true,
+    backgroundColor: "#1b1b1b",
     resizable: true,
     fullscreenable: true,
     webPreferences: {
