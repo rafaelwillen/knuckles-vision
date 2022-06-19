@@ -1,63 +1,100 @@
 import React from "react";
+import RecentMusics from "../../components/RecentMusics";
 import RecentVideos from "../../components/RecentVideos";
 import SearchInput from "../../components/SearchInput";
-import { VideoThumbnail } from "./type";
+import { MusicThumbnail, VideoThumbnail } from "./type";
 
 const MAX_NUMBER_OF_RECENT_VIDEOS = 8;
+const MAX_NUMBER_OF_RECENT_MUSICS = 6;
 
 const Home = () => {
   function handleSearch(searchQuery: string) {
     console.log(searchQuery);
   }
-  const thumbnailImage = "https://via.placeholder.com/250x145";
+  const thumbnailImageVideo = "https://via.placeholder.com/250x145";
+  const thumbnailImage = "https://via.placeholder.com/150";
+
   const fakeRecentVideos: VideoThumbnail[] = [
     {
-      thumbnailImage,
+      thumbnailImage: thumbnailImageVideo,
       publicationDate: new Date(),
-      videoOwner: "Rafael Willen",
+      author: "Rafael Willen",
       videoTitle: "Titulo #1",
     },
     {
-      thumbnailImage,
+      thumbnailImage: thumbnailImageVideo,
       publicationDate: new Date(),
-      videoOwner: "Angleu Zua",
+      author: "Angleu Zua",
       videoTitle: "Titulo #2",
     },
     {
-      thumbnailImage,
+      thumbnailImage: thumbnailImageVideo,
       publicationDate: new Date(),
-      videoOwner: "Helmer Inácio",
+      author: "Helmer Inácio",
       videoTitle: "Titulo #3",
     },
     {
-      thumbnailImage,
+      thumbnailImage: thumbnailImageVideo,
       publicationDate: new Date(),
-      videoOwner: "Knuckles Nation",
+      author: "Knuckles Nation",
       videoTitle: "Titulo #4",
     },
     {
-      thumbnailImage,
+      thumbnailImage: thumbnailImageVideo,
       publicationDate: new Date(),
-      videoOwner: "Rafael Willen",
+      author: "Rafael Willen",
       videoTitle: "Titulo #1",
     },
     {
-      thumbnailImage,
+      thumbnailImage: thumbnailImageVideo,
       publicationDate: new Date(),
-      videoOwner: "Angleu Zua",
+      author: "Angleu Zua",
       videoTitle: "Titulo #2",
     },
     {
-      thumbnailImage,
+      thumbnailImage: thumbnailImageVideo,
       publicationDate: new Date(),
-      videoOwner: "Helmer Inácio",
+      author: "Helmer Inácio",
       videoTitle: "Titulo #3",
     },
     {
-      thumbnailImage,
+      thumbnailImage: thumbnailImageVideo,
       publicationDate: new Date(),
-      videoOwner: "Knuckles Nation",
+      author: "Knuckles Nation",
       videoTitle: "Titulo #4",
+    },
+  ];
+
+  const fakeRecentMusic: MusicThumbnail[] = [
+    {
+      thumbnailImage,
+      author: "Rafael Willen",
+      musicTitle: "Titulo #1",
+    },
+    {
+      thumbnailImage,
+      author: "Rafael Willen",
+      musicTitle: "Titulo #1",
+    },
+    {
+      thumbnailImage,
+      author: "Rafael Willen",
+      musicTitle: "Titulo #1",
+    },
+    {
+      thumbnailImage,
+      author: "Rafael Willen",
+      musicTitle: "Titulo #1",
+    },
+    {
+      thumbnailImage,
+      author: "Rafael Willen",
+      musicTitle: "Titulo #1",
+    },
+    {
+      thumbnailImage,
+      author: "Rafael Willen",
+      musicTitle: "Titulo #1",
     },
   ];
 
@@ -67,6 +104,12 @@ const Home = () => {
       <RecentVideos
         videos={fakeRecentVideos.filter(
           (_, index) => index < MAX_NUMBER_OF_RECENT_VIDEOS
+        )}
+      />
+      <hr className="mx-5 border-grey-900 " />
+      <RecentMusics
+        musics={fakeRecentMusic.filter(
+          (_, index) => index < MAX_NUMBER_OF_RECENT_MUSICS
         )}
       />
     </main>

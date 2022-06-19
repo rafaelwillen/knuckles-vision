@@ -2,7 +2,12 @@ import React from "react";
 import { Props } from "./type";
 
 const VideoThumbnail: React.FC<Props> = ({ video }) => {
-  const { publicationDate, thumbnailImage, videoOwner, videoTitle } = video;
+  const {
+    publicationDate,
+    thumbnailImage,
+    author: videoOwner,
+    videoTitle,
+  } = video;
   return (
     <div className="cursor-pointer flex flex-col gap-1">
       <img src={thumbnailImage} alt={videoTitle} />
