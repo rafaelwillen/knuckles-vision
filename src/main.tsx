@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 import Home from "./routes/Home";
+import MusicPlayer from "./routes/MusicPlayer";
 import { RoutesEnum } from "./routes/RoutesEnum";
 import VideoPlayer from "./routes/VideoPlayer";
 
@@ -14,6 +15,7 @@ ReactDOM.render(
         <Route path={RoutesEnum.Root} element={<App />}>
           <Route path={RoutesEnum.Home} element={<Home />} />
           <Route path={RoutesEnum.VideoPlayer} element={<VideoPlayer />} />
+          <Route path={RoutesEnum.MusicPlayer} element={<MusicPlayer />} />
         </Route>
       </Routes>
     </BrowserRouter>
