@@ -1,15 +1,19 @@
 import React from "react";
 import {
+  MdFavoriteBorder,
+  MdOutlineAdd,
+  MdOutlineFolder,
   MdOutlineHome,
   MdPersonOutline,
-  MdFavoriteBorder,
-  MdOutlineFolder,
-  MdOutlineAdd,
 } from "react-icons/md";
+import { useLocation } from "react-router-dom";
+import { RoutesEnum } from "../../routes/RoutesEnum";
 import MenuButton from "../Button/MenuButton";
 
 const Sidebar = () => {
   const ICON_SIZE = 30;
+
+  const location = useLocation();
 
   const fakeGroups = [
     "Group 1",
@@ -35,19 +39,22 @@ const Sidebar = () => {
       </section>
       <section className="flex flex-col gap-4">
         <MenuButton
-          isSelected
+          isSelected={location.pathname == RoutesEnum.Home}
           icon={<MdOutlineHome size={ICON_SIZE} />}
           text="Início"
         />
         <MenuButton
+          isSelected={location.pathname == RoutesEnum.Account}
           icon={<MdPersonOutline size={ICON_SIZE} />}
           text="Minha Conta"
         />
         <MenuButton
+          isSelected={location.pathname == RoutesEnum.Favorites}
           icon={<MdFavoriteBorder size={ICON_SIZE} />}
           text="Favoritos"
         />
         <MenuButton
+          isSelected={location.pathname == RoutesEnum.MyContent}
           icon={<MdOutlineFolder size={ICON_SIZE} />}
           text="Meu Conteúdo"
         />
