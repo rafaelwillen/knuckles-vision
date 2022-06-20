@@ -6,7 +6,7 @@ import {
   MdOutlineHome,
   MdPersonOutline,
 } from "react-icons/md";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { RoutesEnum } from "../../routes/RoutesEnum";
 import MenuButton from "../Button/MenuButton";
 
@@ -14,6 +14,7 @@ const Sidebar = () => {
   const ICON_SIZE = 30;
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const fakeGroups = [
     "Group 1",
@@ -41,12 +42,14 @@ const Sidebar = () => {
         <MenuButton
           isSelected={location.pathname == RoutesEnum.Home}
           icon={<MdOutlineHome size={ICON_SIZE} />}
+          onClick={() => navigate(RoutesEnum.Home)}
           text="Início"
         />
         <MenuButton
           isSelected={location.pathname == RoutesEnum.Account}
           icon={<MdPersonOutline size={ICON_SIZE} />}
           text="Minha Conta"
+          onClick={() => navigate(RoutesEnum.Account)}
         />
         <MenuButton
           isSelected={location.pathname == RoutesEnum.Favorites}

@@ -1,11 +1,18 @@
-import React from "react";
-import { Player } from "video-react";
+import React, { useEffect } from "react";
 import { MdDownload } from "react-icons/md";
+import { useParams } from "react-router-dom";
+import { Player } from "video-react";
 import "video-react/dist/video-react.css";
-import SearchInput from "../../components/SearchInput";
 import VideoSource from "../../assets/trailer.mp4";
+import SearchInput from "../../components/SearchInput";
 
 const VideoPlayer = () => {
+  const { id } = useParams();
+
+  useEffect(() => {
+    console.log(id);
+  }, []);
+
   function handleSearch(searchQuery: string) {
     console.log(searchQuery);
   }
