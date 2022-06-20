@@ -1,4 +1,4 @@
-import { MusicThumbnail } from "../../pages/Home/type";
+import { MusicThumbnail } from "../../routes/Home/type";
 
 export type Props = {
   music: MusicThumbnail;
