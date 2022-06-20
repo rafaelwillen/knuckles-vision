@@ -1,13 +1,13 @@
 import React from "react";
 import MainLayout from "./components/Layout/MainLayout";
 import Sidebar from "./components/Sidebar";
-import Home from "./pages/Home";
+import VideoPlayer from "./pages/VideoPlayer";
 
 function App() {
   return (
     <MainLayout>
       <Sidebar />
-      <Home />
+      <VideoPlayer />
     </MainLayout>
   );
 }
