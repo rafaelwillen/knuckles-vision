@@ -1,11 +1,11 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import User, { UserType } from "../../models/User";
 import { getUserOnStorage, saveUserOnStorage } from "../../utils/LocalStorage";
 import { AuthContextType, CreateUser, SignInFunction } from "./types";
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-export const AuthProvider: React.FC = ({ children }) => {
+const AuthProvider: React.FC = ({ children }) => {
   const DEFAULT_USER: User = {
     userType: UserType.GUEST,
     username: "",
@@ -68,4 +68,6 @@ export const AuthProvider: React.FC = ({ children }) => {
   );
 };
 
-export default AuthContext;
+export const useAuth = () => useContext(AuthContext);
+
+export default AuthProvider;

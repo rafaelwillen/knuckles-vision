@@ -1,5 +1,7 @@
 export enum RoutesEnum {
   Root = "/",
+  Login = "/login",
+  SignUp = "/sign-up",
   Home = "/home",
   VideoPlayer = "/video/:id",
   MusicPlayer = "/music/:id",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   MdFavoriteBorder,
   MdOutlineAdd,
@@ -7,6 +7,8 @@ import {
   MdPersonOutline,
 } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { UserType } from "../../models/User";
 import { RoutesEnum } from "../../routes/RoutesEnum";
 import MenuButton from "../Button/MenuButton";
 
@@ -15,7 +17,7 @@ const Sidebar = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-
+  const { user } = useAuth();
   const fakeGroups = [
     "Group 1",
     "Super Group 1",
@@ -49,7 +51,13 @@ const Sidebar = () => {
           isSelected={location.pathname == RoutesEnum.Account}
           icon={<MdPersonOutline size={ICON_SIZE} />}
           text="Minha Conta"
-          onClick={() => navigate(RoutesEnum.Account)}
+          onClick={() => {
+            if (user.userType == UserType.GUEST) {
+              navigate(RoutesEnum.Login);
+            } else {
+              navigate(RoutesEnum.Account);
+            }
+          }}
         />
         <MenuButton
           isSelected={location.pathname == RoutesEnum.Favorites}
