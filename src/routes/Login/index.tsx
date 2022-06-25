@@ -1,14 +1,30 @@
 import React, { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
+import { ValidationError } from "yup";
 import { RoutesEnum } from "../RoutesEnum";
+import { LoginValidatorSchema } from "./loginValidator";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(username, password);
+    try {
+      const validationResult = await LoginValidatorSchema.validate({
+        username,
+        password,
+      });
+      console.log(validationResult);
+    } catch (error) {
+      const validationError = error as ValidationError;
+      if (validationError.path == "username")
+        setUsernameError(validationError.message);
+      if (validationError.path == "password")
+        setPasswordError(validationError.message);
+    }
   };
 
   return (
@@ -29,6 +45,9 @@ const Login = () => {
             type="text"
             id="username"
           />
+          {usernameError && (
+            <span className="text-red-600 text-sm mt-1">{usernameError}</span>
+          )}
         </div>
         <div className="flex flex-col">
           <label className="text-base font-light" htmlFor="password">
@@ -41,6 +60,9 @@ const Login = () => {
             type="password"
             id="password"
           />
+          {passwordError && (
+            <span className="text-red-600 text-sm mt-1">{passwordError}</span>
+          )}
         </div>
         <button className="border-gray-400 border w-1/2 py-2 flex items-center justify-center gap-6 hover:bg-white hover:text-black transition self-center">
           Login
