@@ -1,21 +1,16 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-import {
-  CountryChangeFunction,
-  RadioContextType,
-  StationChangeFunction,
-} from "./type";
 import { CountryResult, Station } from "radio-browser-api";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   getAllCountries,
   getStationsByCountry,
   initRadioAPI,
 } from "../../api/radioBrowser";
+import {
+  CountryChangeFunction,
+  MuteStateChangeFunction,
+  RadioContextType,
+  StationChangeFunction,
+} from "./type";
 
 const RadioContext = createContext<RadioContextType>({} as RadioContextType);
 
@@ -24,7 +19,6 @@ const RadioProvider: React.FC = ({ children }) => {
   const [selectedCountry, setSelectedCountry] = useState("Angola");
   const [stations, setStations] = useState<Station[]>([]);
   const [isMuted, setMuted] = useState(false);
-  const [isPlaying, setPlaying] = useState(true);
   const [selectedStation, setSelectedStation] = useState<Station>(
     {} as Station
   );
@@ -48,14 +42,18 @@ const RadioProvider: React.FC = ({ children }) => {
     setSelectedStation(station);
   };
 
+  const onMuteStateChange: MuteStateChangeFunction = (muted) => {
+    setMuted(muted);
+  };
+
   const providerValue: RadioContextType = {
     isMuted,
     countries,
-    isPlaying,
     onCountryChange,
     stations,
     selectedStation,
     onStationChange,
+    onMuteStateChange,
   };
   return (
     <RadioContext.Provider value={providerValue}>
