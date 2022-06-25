@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import { MdPlayCircle, MdVolumeUp, MdVolumeOff } from "react-icons/md";
+import {
+  MdPlayCircle,
+  MdPauseCircle,
+  MdVolumeUp,
+  MdVolumeOff,
+} from "react-icons/md";
 
 const RadioControl = () => {
   const [isMuted, setMuted] = useState(true);

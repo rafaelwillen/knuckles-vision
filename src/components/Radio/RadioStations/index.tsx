@@ -1,22 +1,44 @@
+import { Station } from "radio-browser-api";
 import React from "react";
 import { MdPlayCircle } from "react-icons/md";
+import { useRadio } from "../../../context/RadioContext";
 
 const RadioStations = () => {
-  const stations = [];
+  const {
+    countries,
+    stations,
+    onCountryChange,
+    onStationChange,
+    selectedStation,
+  } = useRadio();
+
+  const MAX_NUMBER_TAGS = 4;
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onCountryChange(e.target.value);
+  };
+
+  const handleStationPlay = (station: Station) => {
+    onStationChange(station);
+  };
 
   return (
     <article className="flex-1 flex flex-col ">
       <div className="flex flex-col items-center gap-2">
         <label>Selecione o país</label>
         <select
+          defaultValue="Angola"
+          onChange={handleSelectChange}
           name="countries"
           className="bg-white text-black rounded-md w-2/3 mx-auto py-2"
         >
-          <option value="Angola">Angola</option>
-          <option value="USA">USA</option>
-          <option value="Portugal">Portugal</option>
-          <option value="Brasil">Brasil</option>
-          <option value="Moçambique">Moçambique</option>
+          {countries
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((country, index) => (
+              <option key={country.name + index} value={country.name}>
+                {country.name}
+              </option>
+            ))}
         </select>
       </div>
       <h3 className="text-center text-xl mt-5 mb-1">
@@ -30,17 +52,28 @@ const RadioStations = () => {
             className="flex border-b p-2 border-dark-600 items-center"
           >
             <div className="flex-1">
-              <p>{station.name}</p>
-              <ul className="flex gap-2 mt-2 ">
-                {station.tags.map((tag) => (
-                  <li className="text-sm bg-grey-900 px-2 rounded-xl">{tag}</li>
-                ))}
+              {selectedStation.id == station.id ? (
+                <p className="text-green-600">{station.name}</p>
+              ) : (
+                <p>{station.name}</p>
+              )}
+              <ul className="flex gap-2 mt-2">
+                {station.tags
+                  .filter((_, index) => index < MAX_NUMBER_TAGS)
+                  .map((tag) => (
+                    <li className="text-sm bg-grey-900 px-2 rounded-xl">
+                      {tag}
+                    </li>
+                  ))}
               </ul>
             </div>
-            <MdPlayCircle
-              size={35}
-              className="hover:text-slate-500 transition cursor-pointer"
-            />
+            {selectedStation.id != station.id && (
+              <MdPlayCircle
+                onClick={() => handleStationPlay(station)}
+                size={35}
+                className="hover:text-slate-500 transition cursor-pointer"
+              />
+            )}
           </li>
         ))}
       </ul>
