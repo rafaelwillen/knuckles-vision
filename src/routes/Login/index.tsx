@@ -1,17 +1,30 @@
-import React from "react";
+import React, { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { RoutesEnum } from "../RoutesEnum";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    console.log(username, password);
+  };
+
   return (
     <section className="flex-1 flex items-center max-h-screen">
-      <form className="bg-dark-700 mx-auto p-8 rounded-lg flex flex-col gap-6 w-5/12  ">
+      <form
+        className="bg-dark-700 mx-auto p-8 rounded-lg flex flex-col gap-6 w-5/12"
+        onSubmit={onSubmit}
+      >
         <h2 className="text-center text-xl mb-2">Login</h2>
         <div className="flex  flex-col ">
           <label className="text-base font-light" htmlFor="username">
             Username
           </label>
           <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             className="bg-transparent border border-gray-400 py-2 px-2 rounded-sm "
             type="text"
             id="username"
@@ -22,6 +35,8 @@ const Login = () => {
             Password
           </label>
           <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="bg-transparent border border-gray-400 py-2 px-2 rounded-sm"
             type="password"
             id="password"
