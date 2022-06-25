@@ -52,11 +52,7 @@ const Sidebar = () => {
           icon={<MdPersonOutline size={ICON_SIZE} />}
           text="Minha Conta"
           onClick={() => {
-            if (user.userType == UserType.GUEST) {
-              navigate(RoutesEnum.Login);
-            } else {
-              navigate(RoutesEnum.Account);
-            }
+            navigate(RoutesEnum.Account);
           }}
         />
         <MenuButton
