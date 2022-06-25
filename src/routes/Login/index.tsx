@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { ValidationError } from "yup";
 import { RoutesEnum } from "../RoutesEnum";
 import { AuthValidationSchema } from "../../utils/validation/AuthValidator";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const { isLoading } = useAuth();
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -31,6 +34,7 @@ const Login = () => {
 
   return (
     <section className="flex-1 flex items-center max-h-screen">
+      {isLoading && <LoadingSpinner />}
       <form
         className="bg-dark-700 mx-auto p-8 rounded-lg flex flex-col gap-6 w-5/12"
         onSubmit={onSubmit}

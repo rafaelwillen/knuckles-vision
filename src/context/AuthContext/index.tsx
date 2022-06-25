@@ -28,6 +28,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const signIn: SignInFunction = async ({ password, username }) => {
     setLoading(true);
+    // TODO: Use API
     setTimeout(() => {
       const user = new User(username, password, UserType.NORMAL);
       saveUserOnStorage(user);
@@ -38,6 +39,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const signUp: CreateUser = async ({ password, userType, username }) => {
     setLoading(true);
+    // TODO: Use API
     setTimeout(() => {
       const user = new User(username, password, userType);
       signIn({
