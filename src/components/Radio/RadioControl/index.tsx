@@ -6,7 +6,7 @@ const RadioControl = () => {
   const [isMuted, setMuted] = useState(true);
 
   return (
-    <article className="flex-1 flex flex-col justify-center items-center gap-4">
+    <article className="flex-1 flex flex-col justify-center items-center gap-4 mt-16">
       <img src="https://via.placeholder.com/300" alt="" />
       <ReactAudioPlayer src="" autoPlay />
       <div className="flex items-center gap-4">
