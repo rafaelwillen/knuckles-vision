@@ -7,5 +7,5 @@ export enum RoutesEnum {
   MusicPlayer = "/music/:id",
   Account = "/account",
   Favorites = "/favorites",
-  MyContent = "/my-content",
+  Radio = "/radio",
 }

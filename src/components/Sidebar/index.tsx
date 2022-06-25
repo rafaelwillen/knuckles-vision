@@ -1,14 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   MdFavoriteBorder,
   MdOutlineAdd,
-  MdOutlineFolder,
+  MdRadio,
   MdOutlineHome,
   MdPersonOutline,
 } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { UserType } from "../../models/User";
 import { RoutesEnum } from "../../routes/RoutesEnum";
 import MenuButton from "../Button/MenuButton";
 
@@ -61,9 +60,10 @@ const Sidebar = () => {
           text="Favoritos"
         />
         <MenuButton
-          isSelected={location.pathname == RoutesEnum.MyContent}
-          icon={<MdOutlineFolder size={ICON_SIZE} />}
-          text="Meu Conteúdo"
+          isSelected={location.pathname == RoutesEnum.Radio}
+          icon={<MdRadio size={ICON_SIZE} />}
+          text="Rádio"
+          onClick={() => navigate(RoutesEnum.Radio)}
         />
       </section>
 
