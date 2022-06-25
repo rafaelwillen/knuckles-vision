@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 const USERNAME_REGEX = /^[a-zA-Z0-9]*$/g;
 
-export const LoginValidatorSchema = yup.object({
+export const AuthValidationSchema = yup.object({
   username: yup
     .string()
     .required("Campo obrigatório")

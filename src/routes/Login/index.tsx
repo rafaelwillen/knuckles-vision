@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { ValidationError } from "yup";
 import { RoutesEnum } from "../RoutesEnum";
-import { LoginValidatorSchema } from "./loginValidator";
+import { AuthValidationSchema } from "../../utils/validation/AuthValidator";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -12,8 +12,10 @@ const Login = () => {
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setUsernameError("");
+    setPasswordError("");
     try {
-      const validationResult = await LoginValidatorSchema.validate({
+      const validationResult = await AuthValidationSchema.validate({
         username,
         password,
       });
@@ -64,7 +66,10 @@ const Login = () => {
             <span className="text-red-600 text-sm mt-1">{passwordError}</span>
           )}
         </div>
-        <button className="border-gray-400 border w-1/2 py-2 flex items-center justify-center gap-6 hover:bg-white hover:text-black transition self-center">
+        <button
+          type="submit"
+          className="border-gray-400 border w-1/2 py-2 flex items-center justify-center gap-6 hover:bg-white hover:text-black transition self-center"
+        >
           Login
         </button>
         <p className="self-center text-sm">
