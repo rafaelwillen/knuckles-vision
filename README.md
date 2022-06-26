@@ -12,15 +12,15 @@ Knuckles Vision é uma aplicação desktop criada com as seguintes tecnologias:
 
 ## Objetivo
 
-Essa aplicação tem o objetivo de ser uma plataforma de consume de vários médias, incluindo vídeos, músicas. Também possui um reprodutor de rádio internacional.
+Essa aplicação tem o objetivo de ser uma plataforma de consumo de vários médias, incluindo vídeos, músicas. Também possui um reprodutor de rádio internacional.
 
 ### Funcionalidades
 
-* Reprodução de vídeos e músicas de um servidor remoto
-* Upload de vídeos e músicas
-* Acesso offline das músicas e vídeos baixados
+* ~~Reprodução de vídeos e músicas de um servidor remoto~~
+* ~~Upload de vídeos e músicas~~
+* ~~Acesso offline das músicas e vídeos baixados~~
 * Reprodução de rádio internacional
-* Grupos de partilhas
+* ~~Grupos de partilhas~~
 
 ## Como executar
 
