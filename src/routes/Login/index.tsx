@@ -11,18 +11,18 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const { isLoading } = useAuth();
+  const { isLoading, signIn } = useAuth();
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setUsernameError("");
     setPasswordError("");
     try {
-      const validationResult = await AuthValidationSchema.validate({
+      await AuthValidationSchema.validate({
         username,
         password,
       });
-      console.log(validationResult);
+      await signIn({ username, password });
     } catch (error) {
       const validationError = error as ValidationError;
       if (validationError.path == "username")
