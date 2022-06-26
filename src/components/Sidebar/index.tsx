@@ -1,13 +1,11 @@
 import React from "react";
 import {
-  MdFavoriteBorder,
   MdOutlineAdd,
-  MdRadio,
   MdOutlineHome,
   MdPersonOutline,
+  MdRadio,
 } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
 import { RoutesEnum } from "../../routes/RoutesEnum";
 import MenuButton from "../Button/MenuButton";
 
@@ -16,17 +14,6 @@ const Sidebar = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const fakeGroups = [
-    "Group 1",
-    "Super Group 1",
-    "Super DUPER Group 1",
-    "The first Group 1",
-    "The 0s",
-    "THE SUPER MEGA DUPER GROUP 1!",
-    "MEMES",
-    "F1",
-  ];
 
   return (
     <aside
@@ -55,11 +42,6 @@ const Sidebar = () => {
           }}
         />
         <MenuButton
-          isSelected={location.pathname == RoutesEnum.Favorites}
-          icon={<MdFavoriteBorder size={ICON_SIZE} />}
-          text="Favoritos"
-        />
-        <MenuButton
           isSelected={location.pathname == RoutesEnum.Radio}
           icon={<MdRadio size={ICON_SIZE} />}
           text="Rádio"
@@ -72,13 +54,7 @@ const Sidebar = () => {
           <span className="flex-1 text-xl">Meus Grupos</span>
           <MdOutlineAdd className="cursor-pointer" size={ICON_SIZE} />
         </div>
-        <div className="flex flex-col gap-3 text-base">
-          {fakeGroups.map((group, index) => (
-            <span key={index} className="hover:underline cursor-pointer">
-              {group}
-            </span>
-          ))}
-        </div>
+        <div className="flex flex-col gap-3 text-base"></div>
       </section>
     </aside>
   );
