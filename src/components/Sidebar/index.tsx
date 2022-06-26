@@ -52,7 +52,11 @@ const Sidebar = () => {
       <section className="flex flex-col border-t-2 border-t-grey-700 py-7 px-6 gap-9">
         <div className="flex items-center">
           <span className="flex-1 text-xl">Meus Grupos</span>
-          <MdOutlineAdd className="cursor-pointer" size={ICON_SIZE} />
+          <MdOutlineAdd
+            className="cursor-pointer"
+            size={ICON_SIZE}
+            onClick={() => navigate(RoutesEnum.CreateGroup)}
+          />
         </div>
         <div className="flex flex-col gap-3 text-base"></div>
       </section>

@@ -8,4 +8,5 @@ export enum RoutesEnum {
   Account = "/account",
   Favorites = "/favorites",
   Radio = "/radio",
+  CreateGroup = "/group/new",
 }

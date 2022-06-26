@@ -5,6 +5,7 @@ import App from "./App";
 import AuthProvider from "./context/AuthContext";
 import "./index.css";
 import Account from "./routes/Account";
+import CreateGroup from "./routes/CreateGroup";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
 import MusicPlayer from "./routes/MusicPlayer";
@@ -33,6 +34,14 @@ ReactDOM.render(
               element={
                 <ProtectedRoute>
                   <Account />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path={RoutesEnum.CreateGroup}
+              element={
+                <ProtectedRoute>
+                  <CreateGroup />
                 </ProtectedRoute>
               }
             />
