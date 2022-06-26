@@ -37,9 +37,6 @@ const Sidebar = () => {
           isSelected={location.pathname == RoutesEnum.Account}
           icon={<MdPersonOutline size={ICON_SIZE} />}
           text="Minha Conta"
-          onClick={() => {
-            navigate(RoutesEnum.Account);
-          }}
         />
         <MenuButton
           isSelected={location.pathname == RoutesEnum.Radio}
