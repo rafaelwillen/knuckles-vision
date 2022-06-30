@@ -8,10 +8,11 @@ const ProtectedRoute: React.FC = ({ children }) => {
   const { user } = useAuth();
   const location = useLocation();
 
-  if (user.userType == UserType.GUEST)
+  if (user.type === UserType.GUEST) {
     return (
       <Navigate to={RoutesEnum.Login} state={{ from: location }} replace />
     );
+  }
 
   return <>{children}</>;
 };

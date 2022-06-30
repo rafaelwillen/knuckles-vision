@@ -1,18 +1,20 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import User, { UserType } from "../../models/User";
+import UserService from "../../api/user";
+import { User, UserType } from "../../models/User";
 import { getUserOnStorage, saveUserOnStorage } from "../../utils/LocalStorage";
 import { AuthContextType, CreateUser, SignInFunction } from "./types";
+
+type UserAuth = Pick<User, "username" | "type">;
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 const AuthProvider: React.FC = ({ children }) => {
-  const DEFAULT_USER: User = {
-    userType: UserType.GUEST,
+  const DEFAULT_USER: UserAuth = {
+    type: UserType.GUEST,
     username: "",
-    password: "",
   };
 
-  const [user, setUser] = useState<User>(DEFAULT_USER);
+  const [user, setUser] = useState<UserAuth>(DEFAULT_USER);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -28,26 +30,34 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const signIn: SignInFunction = async ({ password, username }) => {
     setLoading(true);
-    // TODO: Use API
-    setTimeout(() => {
-      const user = new User(username, password, UserType.NORMAL);
-      saveUserOnStorage(user);
-      setUser(user);
+    try {
+      const user = await UserService.loginUser(username, password);
+      if (user) {
+        saveUserOnStorage(user);
+        setUser(user);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Erro no login");
+      console.error(error);
       setLoading(false);
-    }, 2000);
+    }
   };
 
-  const signUp: CreateUser = async ({ password, userType, username }) => {
+  const signUp: CreateUser = async ({ password, type, username }) => {
     setLoading(true);
-    // TODO: Use API
-    setTimeout(() => {
-      const user = new User(username, password, userType);
-      signIn({
-        username,
+    try {
+      await UserService.createUser({
         password,
+        username,
+        type,
       });
-      console.log(user);
-    }, 2000);
+      setLoading(false);
+    } catch (error) {
+      console.error("Erro no cadastro");
+      console.error(error);
+      setLoading(false);
+    }
   };
 
   const signOut = async () => {

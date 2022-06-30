@@ -17,4 +17,5 @@ export interface User {
 export enum UserType {
   NORMAL = "normal",
   EDITOR = "editor",
+  GUEST = "guest",
 }

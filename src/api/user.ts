@@ -30,3 +30,9 @@ async function createUser(user: Pick<User, "username" | "password" | "type">) {
     console.log(error);
   }
 }
+
+export default {
+  deleteUser,
+  loginUser,
+  createUser,
+};
