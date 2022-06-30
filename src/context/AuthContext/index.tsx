@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UserService from "../../api/user";
 import { User, UserType } from "../../models/User";
+import { RoutesEnum } from "../../routes/RoutesEnum";
 import { getUserOnStorage, saveUserOnStorage } from "../../utils/LocalStorage";
 import { AuthContextType, CreateUser, SignInFunction } from "./types";
 
@@ -9,6 +11,8 @@ type UserAuth = Pick<User, "username" | "type">;
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 const AuthProvider: React.FC = ({ children }) => {
+  const navigate = useNavigate();
+
   const DEFAULT_USER: UserAuth = {
     type: UserType.GUEST,
     username: "",
@@ -36,6 +40,7 @@ const AuthProvider: React.FC = ({ children }) => {
         saveUserOnStorage(user);
         setUser(user);
         setLoading(false);
+        navigate(RoutesEnum.Account);
       }
     } catch (error) {
       console.error("Erro no login");

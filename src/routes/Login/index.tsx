@@ -1,17 +1,25 @@
-import React, { FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { FormEvent, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ValidationError } from "yup";
 import { RoutesEnum } from "../RoutesEnum";
 import { AuthValidationSchema } from "../../utils/validation/AuthValidator";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useAuth } from "../../context/AuthContext";
+import { UserType } from "../../models/User";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const { isLoading, signIn } = useAuth();
+  const { isLoading, signIn, user } = useAuth();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (pathname === RoutesEnum.Login && user.type !== UserType.GUEST)
+      navigate(RoutesEnum.Home);
+  }, []);
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
