@@ -1,28 +1,38 @@
 import React, { FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ValidationError } from "yup";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useAuth } from "../../context/AuthContext";
+import { UserType } from "../../models/User";
 import { AuthValidationSchema } from "../../utils/validation/AuthValidator";
 import { RoutesEnum } from "../RoutesEnum";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const { isLoading } = useAuth();
+  const { isLoading, createUser } = useAuth();
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setUsernameError("");
     setPasswordError("");
     try {
-      const validationResult = await AuthValidationSchema.validate({
+      await AuthValidationSchema.validate({
         username,
         password,
       });
-      console.log(validationResult);
+      await createUser({
+        username,
+        password,
+        type: UserType.NORMAL,
+      });
+      alert(
+        "Utilizador cadastrado com sucesso! Faça o login para aceder a aplicação"
+      );
+      navigate(RoutesEnum.Login);
     } catch (error) {
       const validationError = error as ValidationError;
       if (validationError.path == "username")
